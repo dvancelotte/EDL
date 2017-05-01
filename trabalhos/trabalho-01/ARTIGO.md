@@ -149,3 +149,9 @@ Note, que em Ada nós temos que definir o tamanho da string e em Python não é 
 Em resumo, Ada foi projetada para maximizar a verificação de erros que um
 compilador pode fazer no início do processo de desenvolvimento. Cada construção
 sintática se destina a ajudar o compilador atingir esse objetivo. Com isso ela se torna extramente poderosa para o seu domínio principal.
+
+# Referências
+
+[Jaior] http://www.jairo.pro.br/lpi/ling_prog.pdf
+[Mostre ao mundo] http://www.mostreaomundo.com.br/2012/10/linguagem-de-programacao-ada.html
+[Wikipedia] https://pt.wikipedia.org/wiki/Ada_(linguagem_de_programa%C3%A7%C3%A3o)

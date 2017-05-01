@@ -152,6 +152,6 @@ sintática se destina a ajudar o compilador atingir esse objetivo. Com isso ela 
 
 # Referências
 
-[Jaior] http://www.jairo.pro.br/lpi/ling_prog.pdf
-[Mostre ao mundo] http://www.mostreaomundo.com.br/2012/10/linguagem-de-programacao-ada.html
-[Wikipedia] https://pt.wikipedia.org/wiki/Ada_(linguagem_de_programa%C3%A7%C3%A3o)
+* Jaior - http://www.jairo.pro.br/lpi/ling_prog.pdf
+* Mostre ao mundo - http://www.mostreaomundo.com.br/2012/10/linguagem-de-programacao-ada.html
+* Wikipedia - https://pt.wikipedia.org/wiki/Ada_(linguagem_de_programa%C3%A7%C3%A3o)

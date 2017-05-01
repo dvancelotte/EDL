@@ -85,6 +85,37 @@ Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo de Hello W
 
 ## Legibilidade
 
+É comprenssível que Ada não seja uma linguagem com muita capacidade de escrita, uma vez que, sua criação foi focada na **legibilidade**. Eles precisavam de uma linguagem no qual fosse fácil de realizar manutenção. Python também é uma linguagem legibilidade, contudo ela não se iguala a de Ada devido a sua tipagem dinamica.
+
+Por exemplo, nos códigos abaixo a função do programa é informar o **dobro do número 5**.
+
+**Em Ada**
+
+```Ada
+  With Ada.Text_IO; Use Ada.Text_IO;
+  With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
+  Procedure Duplicar is
+          A,B: Integer;
+  begin
+
+    A := 5;
+    B := A * 2;
+    Put_Line("Duplicado é");
+    Put(B);
+
+  end Duplicar;
+```
+
+**Em Python**
+
+```Python
+  a = 5
+  b = a * 2
+  print("Duplicado é \n" + b)
+```
+
+Vamos supor que esses códigos sejam apenas trechos de um programa. Ada irá me garantir que em **todo o programa** a variável A será **somente** números inteiros. O que facilita a compreensão de outras operações envolvendo a variável. Já no Python, ele não me garantirá tal caracteristica. A variável pode mudar em **qualquer momento** no programa o seu tipo. Em programas muito grandes isso pode ser um problema, por isso, Ada é mais **legível** do que Python.
+
 ## Expressividade
 
 # Conclusão

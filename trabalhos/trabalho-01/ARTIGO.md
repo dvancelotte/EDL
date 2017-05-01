@@ -118,4 +118,34 @@ Vamos supor que esses códigos sejam apenas trechos de um programa. Ada irá me 
 
 ## Expressividade
 
+Se por um lado a tipagem dinamica de Python atrapalha a legibilidade por outro lado ela ajuda na expressividade. Abaixo temos um exemplo de um programa que imprimi o nome de uma pessoa com o tamanho de até 10 caracteres.
+
+**Em ada**
+
+```Ada
+With Ada.Text_IO; Use Ada.Text_IO;  
+With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
+ 
+procedure SayMyName is
+	n: natural;
+	nome: string(1..10);
+begin
+	Get_Line(nome,n);
+	Put_Line(nome(1..n));
+end SayMyName;
+```
+
+**Em Python**
+
+```Python
+  nome = input()
+  print(nome)
+```
+
+Note, que em Ada nós temos que definir o tamanho da string e em Python não é necessário. Então, isto significa que em qualquer momento do programa em Python a variável "nome" pode ter um tamanho maior que 10 e em Ada não conseguimos ter essa variável de tamanho indefinido. Em sumo, temos que Ada é **menos expressiva** do que Python.  
+
 # Conclusão
+
+Em resumo, Ada foi projetada para maximizar a verificação de erros que um
+compilador pode fazer no início do processo de desenvolvimento. Cada construção
+sintática se destina a ajudar o compilador atingir esse objetivo. Com isso ela se torna extramente poderosa para o seu domínio principal.

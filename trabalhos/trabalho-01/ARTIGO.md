@@ -56,32 +56,52 @@ Antes de iniciar a comparação vamos entender um pouco a estrutura básica do c
 
 ## Capacidade de escrita (Writability)
 
-Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo de Hello World.
+Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo de fatorial feito recursivamente.
 
 **Exemplo em Python**
 
 ```Python
-  print ("Hello World! \n")
+def fatorial(n): 
+   if n<=1:
+      return 1
+   else: 
+      return n*fatorial(n-1)
+      
+n= int(raw_input())
+print ("Resultado: " + fatorial(n))  
 ```
 
 **Exemplo em Ada**
 
 ```Ada
-  With Ada.Text_IO; Use Ada.Text_IO;  
+With Ada.Text_IO, Ada.Integer_Text_IO;
+Use Ada.Text_IO, Ada.Integer_Text_IO;
 
-  procedure HelloWorld is
-  begin
-    Put_Line("Hello World! ");
-  end HelloWorld;
+Procedure MainFat is
+
+   Function Fatorial (n1:Integer) return Integer is
+   Begin
+      If n1 = 0 Then
+	 Return 1;
+      Else
+	 Return (n1 * Fatorial (n1 - 1));
+      End If;
+   End Fatorial;
+
+   n:integer;
+
+Begin
+
+   Get(n);
+   Put("Resultado: ");
+   Put(Fatorial(n),1);
+
+End MainFat;
 ```
 
-**Saída de ambos os programas**
+Em comparação podemos concluir que Ada tem **menos capacidade de escrita** do que Python, uma vez que, existe diversas notações das linguagens como: obrigatoriedade do ponto e virgula, declaração do inicio do programa principal, indicação de onde os comandos termina e dentre outros.
 
-```Saida
-  Hello World
-  
-```
-É possível notar que com Python temos menos "burocracia" para escrever um Hello World na tela. Dessa forma, podemos conluir que Ada tem **menos capacidade de escrita** do que Python.
+
 
 ## Legibilidade
 
@@ -117,32 +137,7 @@ Por exemplo, nos códigos abaixo a função do programa é informar o **dobro do
 Vamos supor que esses códigos sejam apenas trechos de um programa. Ada irá me garantir que em **todo o programa** a variável A será **somente** números inteiros. O que facilita a compreensão de outras operações envolvendo a variável. Já no Python, ele não me garantirá tal caracteristica. A variável pode mudar em **qualquer momento** no programa o seu tipo. Em programas muito grandes isso pode ser um problema, por isso, Ada é mais **legível** do que Python.
 
 ## Expressividade
-
-Se por um lado a tipagem dinamica de Python atrapalha a legibilidade por outro lado ela ajuda na expressividade. Abaixo temos um exemplo de um programa que imprimi o nome de uma pessoa com o tamanho de até 10 caracteres.
-
-**Em ada**
-
-```Ada
-With Ada.Text_IO; Use Ada.Text_IO;  
-With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
  
-procedure SayMyName is
-	n: natural;
-	nome: string(1..10);
-begin
-	Get_Line(nome,n);
-	Put_Line(nome(1..n));
-end SayMyName;
-```
-
-**Em Python**
-
-```Python
-  nome = input()
-  print(nome)
-```
-
-Note, que em Ada nós temos que definir o tamanho da string e em Python não é necessário. Então, isto significa que em qualquer momento do programa em Python a variável "nome" pode ter um tamanho maior que 10 e em Ada não conseguimos ter essa variável de tamanho indefinido. Em sumo, temos que Ada é **menos expressiva** do que Python.  
 
 # Conclusão
 

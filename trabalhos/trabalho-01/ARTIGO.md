@@ -68,7 +68,7 @@ def fatorial(n):
       return n*fatorial(n-1)
       
 n= int(raw_input())
-print ("Resultado: " + fatorial(n))  
+print ("Resultado: " + str(fatorial(n)))  
 ```
 
 **Exemplo em Ada**
@@ -99,7 +99,7 @@ Begin
 End MainFat;
 ```
 
-Em comparação podemos concluir que Ada tem **menos capacidade de escrita** do que Python, uma vez que, existe diversas notações das linguagens como: obrigatoriedade do ponto e virgula, declaração do inicio do programa principal, indicação de onde os comandos termina e dentre outros.
+Em comparação podemos concluir que Ada tem **menos capacidade de escrita** do que Python, uma vez que, existe diversas notações da linguagem Ada como: obrigatoriedade do ponto e virgula, declaração do inicio/fim do programa principal, indicação de onde os comandos termina e dentre outros. Enquanto em Python só temos que identar o código para informar de qual bloco aquele comando pertence.
 
 
 

@@ -137,7 +137,36 @@ Por exemplo, nos códigos abaixo a função do programa é informar o **dobro do
 Vamos supor que esses códigos sejam apenas trechos de um programa. Ada irá me garantir que em **todo o programa** a variável A será **somente** números inteiros. O que facilita a compreensão de outras operações envolvendo a variável. Já no Python, ele não me garantirá tal caracteristica. A variável pode mudar em **qualquer momento** no programa o seu tipo. Em programas muito grandes isso pode ser um problema, por isso, Ada é mais **legível** do que Python.
 
 ## Expressividade
+
+O Ada fornece um extenso conjunto de recursos para criar programas com módulos de código simultâneos. Java obtém muitos dos mesmos resultados usando a classe Thread. Um módulo de código concorrente Ada é chamado uma **task**.
+
+Um programa em Ada consiste de pelo menos uma, e possível mais tasks, que são executadas simultaneamente. As task são executadas independentemente umas das outras, comunicação / sincronização é alcançada por conceitos de alto nível, como o encontro(rendezvous) ou com objetos protegidos.
  
+ ```
+ procedure demo is
+	task single_entry is
+		entry handshake;
+	end task;
+
+	task body single_entry is
+	begin
+		delay 50.0;
+
+		accept handshake;
+
+		delay 1.0;
+	end;
+begin
+	for i in 1..random(100) loop
+		delay(1.0);
+	end loop;
+	handshake;
+end;
+ ```
+ 
+O recurso mecanismo usado acima foi o de encontro(rendezvous). Ele é um recurso de tasks para se comunicar e sincronizar com segurança umas com as outras. Quando exemplo é executado, a tarefa single_entry é inciada. Se ela for bem sucedida, a tarefa principal também é ativada. Se 'random' retorna um valor menor que 50, então após o atraso inicial a tarefa principal aguarda a segunda tarefa, e vice-versa se retorna maior que 50. Uma vez que as duas tarefas têm encontro, eles partem em seus 'caminhos' separadamente. A tarefa principal termina, a segunda tarefa continua até que ela também termine. O programa termina então. Isso tudo ocorre paralelamente, ajudando também na performace do programa.
+
+Já em Python não é possível fazer essa operação com thread de forma paralela pois existe a limitação do Global Interpreter Lock ou GIL. Ainda que eu tenha dois processadores e duas threads, apenas uma thread poderá estar executando código dentro das regiões protegidas pelo GIL. Com isso temos que Ada ** é mais expressiva ** do que Python.
 
 # Conclusão
 
@@ -150,3 +179,4 @@ sintática se destina a ajudar o compilador atingir esse objetivo. Com isso ela 
 * Jaior - http://www.jairo.pro.br/lpi/ling_prog.pdf
 * Mostre ao mundo - http://www.mostreaomundo.com.br/2012/10/linguagem-de-programacao-ada.html
 * Wikipedia - https://pt.wikipedia.org/wiki/Ada_(linguagem_de_programa%C3%A7%C3%A3o)
+* Goanna - http://goanna.cs.rmit.edu.au/~dale/ada/aln/15_concurrency.html

@@ -180,3 +180,4 @@ sintática se destina a ajudar o compilador atingir esse objetivo. Com isso ela 
 * Mostre ao mundo - http://www.mostreaomundo.com.br/2012/10/linguagem-de-programacao-ada.html
 * Wikipedia - https://pt.wikipedia.org/wiki/Ada_(linguagem_de_programa%C3%A7%C3%A3o)
 * Goanna - http://goanna.cs.rmit.edu.au/~dale/ada/aln/15_concurrency.html
+* Python - http://wiki.python.org.br/PerguntasFrequentes/SobreProgramacao

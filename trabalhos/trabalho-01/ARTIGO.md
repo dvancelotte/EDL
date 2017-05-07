@@ -122,6 +122,7 @@ O Ada fornece um extenso conjunto de recursos para criar programas com módulos 
 Um programa em Ada consiste de pelo menos uma, e possível mais tasks, que são executadas simultaneamente. As task são executadas independentemente umas das outras, comunicação / sincronização é alcançada por conceitos de alto nível, como o encontro(rendezvous) ou com objetos protegidos.
  
  ```Ada
+ [...]
  procedure demo is
 	task single_entry is
 		entry handshake;
@@ -139,7 +140,7 @@ begin
 	for i in 1..random(100) loop
 		delay(1.0);
 	end loop;
-	handshake;
+	single_entry.handshake;
 end;
  ```
  

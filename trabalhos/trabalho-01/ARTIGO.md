@@ -56,51 +56,34 @@ Antes de iniciar a comparação vamos entender um pouco a estrutura básica do c
 
 ## Capacidade de escrita (Writability)
 
-Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo de fatorial feito recursivamente.
+Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo abaixo aonde ambos os códigos exibem o tamanho de um array.
 
 **Exemplo em Python**
 
 ```Python
-def fatorial(n): 
-   if n<=1:
-      return 1
-   else: 
-      return n*fatorial(n-1)
-      
-n= int(raw_input())
-print ("Resultado: " + str(fatorial(n)))  
+ print(len(['apple', 'orange']))
 ```
 
 **Exemplo em Ada**
 
 ```Ada
-With Ada.Text_IO, Ada.Integer_Text_IO;
-Use Ada.Text_IO, Ada.Integer_Text_IO;
-
-Procedure MainFat is
-
-   Function Fatorial (n1:Integer) return Integer is
-   Begin
-      If n1 = 0 Then
-	 Return 1;
-      Else
-	 Return (n1 * Fatorial (n1 - 1));
-      End If;
-   End Fatorial;
-
-   n:integer;
-
-Begin
-
-   Get(n);
-   Put("Resultado: ");
-   Put(Fatorial(n),1);
-
-End MainFat;
+with Ada.Text_IO;  use Ada.Text_IO;
+ 
+procedure Array_Length is
+   Fruits : constant array (Positive range <>) of access constant String
+      := (new String'("orange"),
+          new String'("apple"));
+ 
+begin
+   for Fruit of Fruits loop
+      Ada.Text_IO.Put (Integer'Image (Fruit'Length));
+   end loop;
+ 
+   Ada.Text_IO.Put_Line ("  Array Size : " & Integer'Image (Fruits'Length));
+end Array_Length;
 ```
 
-Em comparação podemos concluir que Ada tem **menos capacidade de escrita** do que Python, uma vez que, existe diversas notações da linguagem Ada como: obrigatoriedade do ponto e virgula, declaração do inicio/fim do programa principal, indicação de onde os comandos termina e dentre outros. Enquanto em Python só temos que identar o código para informar de qual bloco aquele comando pertence.
-
+Em comparação podemos concluir que Ada tem **menos capacidade de escrita** do que Python, uma vez que, existe diversas notações da linguagem Ada como: obrigatoriedade do ponto e virgula, declaração do inicio/fim do programa principal, indicação de onde os comandos termina e dentre outros.
 
 
 ## Legibilidade

@@ -129,37 +129,38 @@ with Ada.Numerics.Discrete_Random;
 
   Procedure Duplicar is
   
-  	subtype N is Integer range 1 .. 10;
+ 	subtype N is Integer range 1 .. 10;
 	package Random_Number is new Ada.Numerics.Discrete_Random (N);
 	use Random_Number;
 	G : Generator;
 	A: Integer;
 	
 	
-    task seefriend is
-   		entry handshake;
-   end seefriend;
+	task seefriend is
+		entry handshake;
+	end seefriend;
 
-   task body seefriend is
-   begin
-   	delay 5.0;
+	task body seefriend is
+	begin
+		delay 5.0;
 
-   	accept handshake do 
-   		Put("Vamos marcar alguma coisa?"); 
-   	End handshake;
+		accept handshake do 
+			Put("Vamos marcar alguma coisa?"); 
+		End handshake;
 
-   	delay 1.0;
-   end seefriend;
+		delay 1.0;
+		
+	end seefriend;
   	 
   begin
-  	Reset (G);
-   	A := Random(G);
-   	
-  	for i in 1 .. A loop
-  		delay(1.0);
-  	end loop;
-  	
-  	seefriend.handshake;
+	Reset (G);
+	A := Random(G);
+
+	for i in 1 .. A loop
+		delay(1.0);
+	end loop;
+
+	seefriend.handshake;
 
   end Duplicar;
  ```

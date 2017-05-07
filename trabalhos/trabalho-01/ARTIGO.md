@@ -122,26 +122,46 @@ O Ada fornece um extenso conjunto de recursos para criar programas com módulos 
 Um programa em Ada consiste de pelo menos uma, e possível mais tasks, que são executadas simultaneamente. As task são executadas independentemente umas das outras, comunicação / sincronização é alcançada por conceitos de alto nível, como o encontro(rendezvous) ou com objetos protegidos.
  
  ```Ada
- [...]
- procedure demo is
-	task single_entry is
-		entry handshake;
-	end task;
+With Ada.Text_IO; Use Ada.Text_IO;
+With Ada.Integer_Text_IO; Use Ada.Integer_Text_IO;
+with Ada.Numerics.Discrete_Random;
 
-	task body single_entry is
-	begin
-		delay 50.0;
 
-		accept handshake;
+  Procedure Duplicar is
+  
+  	subtype N is Integer range 1 .. 10;
+	package Random_Number is new Ada.Numerics.Discrete_Random (N);
+	use Random_Number;
+	G : Generator;
+	A: Integer;
+	
+	
+    task seefriend is
+   		entry handshake;
+   end seefriend;
 
-		delay 1.0;
-	end;
-begin
-	for i in 1..random(100) loop
-		delay(1.0);
-	end loop;
-	single_entry.handshake;
-end;
+   task body seefriend is
+   begin
+   	delay 5.0;
+
+   	accept handshake do 
+   		Put("Vamos marcar alguma coisa?"); 
+   	End handshake;
+
+   	delay 1.0;
+   end seefriend;
+  	 
+  begin
+  	Reset (G);
+   	A := Random(G);
+   	
+  	for i in 1 .. A loop
+  		delay(1.0);
+  	end loop;
+  	
+  	seefriend.handshake;
+
+  end Duplicar;
  ```
  
 O recurso mecanismo usado acima foi o de encontro(rendezvous). Ele é um recurso de tasks para se comunicar e sincronizar com segurança umas com as outras. Quando exemplo é executado, a tarefa single_entry é inciada. Se ela for bem sucedida, a tarefa principal também é ativada. Se 'random' retorna um valor menor que 50, então após o atraso inicial a tarefa principal aguarda a segunda tarefa, e vice-versa se retorna maior que 50. Uma vez que as duas tarefas têm encontro, eles partem em seus 'caminhos' separadamente. A tarefa principal termina, a segunda tarefa continua até que ela também termine. O programa termina então. Isso tudo ocorre paralelamente, ajudando também na performace do programa.

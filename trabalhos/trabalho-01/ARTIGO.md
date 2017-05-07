@@ -61,7 +61,7 @@ Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo abaixo aon
 **Exemplo em Python**
 
 ```Python
- print(len(['apple', 'orange']))
+print('Array size:' + str(len(['Deborah', 'Fernada'])))
 ```
 
 **Exemplo em Ada**
@@ -70,16 +70,12 @@ Para avaliarmos a capacidade de escrita em Ada utilizaremos o exemplo abaixo aon
 with Ada.Text_IO;  use Ada.Text_IO;
  
 procedure Array_Length is
-   Fruits : constant array (Positive range <>) of access constant String
-      := (new String'("orange"),
-          new String'("apple"));
+   NomeComposto : constant array (Positive range <>) of access constant String
+      := (new String'("Deborah"),
+          new String'("Fernanda"));
  
 begin
-   for Fruit of Fruits loop
-      Ada.Text_IO.Put (Integer'Image (Fruit'Length));
-   end loop;
- 
-   Ada.Text_IO.Put_Line ("  Array Size : " & Integer'Image (Fruits'Length));
+   Ada.Text_IO.Put_Line ("  Array Size : " & Integer'Image (NomeComposto'Length));
 end Array_Length;
 ```
 

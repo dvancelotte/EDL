@@ -108,9 +108,9 @@ Por exemplo, nos códigos abaixo a função do programa é informar o **dobro do
 **Em Python**
 
 ```Python
-  a = 5
-  b = a * 2
-  print("Duplicado é \n" + b)
+a = 5
+b = a * 2
+print("Duplicado é \n" + str(b))
 ```
 
 Vamos supor que esses códigos sejam apenas trechos de um programa. Ada irá me garantir que em **todo o programa** a variável A será **somente** números inteiros. O que facilita a compreensão de outras operações envolvendo a variável. Já no Python, ele não me garantirá tal caracteristica. A variável pode mudar em **qualquer momento** no programa o seu tipo. Em programas muito grandes isso pode ser um problema, por isso, Ada é mais **legível** do que Python.

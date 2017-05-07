@@ -165,9 +165,9 @@ with Ada.Numerics.Discrete_Random;
   end Duplicar;
  ```
  
-O recurso mecanismo usado acima foi o de encontro(rendezvous). Ele é um recurso de tasks para se comunicar e sincronizar com segurança umas com as outras. Quando exemplo é executado, a tarefa single_entry é inciada. Se ela for bem sucedida, a tarefa principal também é ativada. Se 'random' retorna um valor menor que 50, então após o atraso inicial a tarefa principal aguarda a segunda tarefa, e vice-versa se retorna maior que 50. Uma vez que as duas tarefas têm encontro, eles partem em seus 'caminhos' separadamente. A tarefa principal termina, a segunda tarefa continua até que ela também termine. O programa termina então. Isso tudo ocorre paralelamente, ajudando também na performace do programa.
+O recurso mecanismo usado acima foi o de encontro(rendezvous). Ele é um recurso de tasks para se comunicar e sincronizar com segurança umas com as outras. Quando exemplo é executado, a tarefa single_entry é inciada. Se ela for bem sucedida, a tarefa principal também é ativada. Se 'random' retorna um valor menor que 5, então após o atraso inicial a tarefa principal aguarda a segunda tarefa, e vice-versa se retorna maior que 5. Uma vez que as duas tarefas têm encontro, eles partem em seus 'caminhos' separadamente. A tarefa principal termina, a segunda tarefa continua até que ela também termine. O programa termina então. Isso tudo ocorre paralelamente, ajudando também na performace do programa.
 
-Já em Python não é possível fazer essa operação com thread de forma paralela pois existe a limitação do Global Interpreter Lock ou GIL. Ainda que eu tenha dois processadores e duas threads, apenas uma thread poderá estar executando código dentro das regiões protegidas pelo GIL. Com isso temos que Ada ** é mais expressiva ** do que Python.
+Já em Python não é possível fazer essa operação com thread de forma paralela pois existe a limitação do Global Interpreter Lock ou GIL. Ainda que eu tenha dois processadores e duas threads, apenas uma thread poderá estar executando código dentro das regiões protegidas pelo GIL. Com isso temos que Ada **é mais expressiva** do que Python.
 
 # Conclusão
 

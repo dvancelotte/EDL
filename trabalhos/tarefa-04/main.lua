@@ -1,6 +1,7 @@
 screenWidth = love.graphics.getWidth()
 screenHeight = love.graphics.getHeight()
 
+
 -- Tamanho padrão dos Blocos.
 default_block_size = 20
 
@@ -35,6 +36,11 @@ function love.load ()
 
   -- Inicializa a Cor do Cenário
   love.graphics.setBackgroundColor(255,255,255)
+    
+    -- Nome: 'love.graphics.setBackgroundColor'
+    -- Binding time: compilação
+    -- Propriedade: endereco
+    -- Explicação: O compilador terá que criar um endereço para incluir o valor na propriedade BackgroundColor. Por isso, seu binding time é por tempo de compilação
 
   -- Inicializa a Cor das Linhas de Demarcação do Cenário.
   love.graphics.setColor(0,0, 0)
@@ -58,6 +64,10 @@ function love.load ()
       previous = {
         x = nil,
         y = nil
+      -- Nome: nil
+      -- Binding time: desing
+      -- Propriedade: valor
+      -- Explicação: Um tipo de valor pré-definido em tempo de design.
       }
     },
     direction = {
@@ -139,6 +149,13 @@ function love.load ()
 
   -- Adiciona um bloco ao Jogador.
   function playerAddBlock(x,y)
+    
+-- Nome: variável “y" (run)
+-- Propriedade: endereço
+-- Binding time: execução
+-- Explicação: y é uma variavel da função playerAddBloco, logo seu endereço só poderá ser determinado em tempo de execução
+
+
 
     -- Estrutura do Novo Bloco.
     new_block = {
@@ -149,6 +166,7 @@ function love.load ()
     }
 
     player.body.size = player.body.size + 1
+    
 
     print("Criei Corpo no Player! : " .. tostring(player.body.size) .. "    x: " .. tostring(new_block.pos.x) .. "    y: " .. tostring(new_block.pos.y))
 
@@ -161,6 +179,11 @@ function love.load ()
 
     food.pos.x = love.math.random(20, screenWidth - 30)
     food.pos.y = love.math.random(20, screenHeight - 30)
+    
+    -- Nome: variável “food.pos.x"
+    -- Propriedade: valor
+    -- Binding time: execução
+    -- Explicação: A variável só terá valor, após o jogador iniciar o jogo.
 
     food.isAlive = true
 
@@ -181,6 +204,13 @@ function love.load ()
 
   -- Atualiza o placar do jogo.
   function updatescore()
+    
+    -- Nome: '>'
+    -- Binding time: compilação
+    -- Propriedade: semantica
+    -- Explicação: > indica uma operação no qual compara duas variaveis. Essa operação é definida em tempo de compilação. 
+    
+    
     if(player.body.size > high_score) then
       high_score = player.body.size
     end
@@ -286,6 +316,11 @@ function love.load ()
       love.graphics.print("y " .. tostring(player.pos.current.y) , screenWidth-150, 30)
     end
   end
+
+      -- Nome: end
+      -- Binding time: desing
+      -- Propriedade: semantica
+      -- Explicação: Definida pela linguagem para indica o fim de um bloco.
 
   function love.draw()
 

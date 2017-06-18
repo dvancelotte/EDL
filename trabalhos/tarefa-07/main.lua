@@ -71,13 +71,7 @@ function love.load ()
       speed = 1400,
       gap = 1,
       blocks = {}
-     --[[trabalho 07
-            Array: Blocks
-            Escopo: Blocks é uma variável global
-            Tempo de vida: Sua duração é o tempo em que o programa é executado.
-            Alocação: É incrementado quando ocorre a colisão da skane com o food ou foodEspecial.
-            Desalocação: Por completo quando o programa é encerrado, ou parcial quando o "luck" do foodEspecial está definida para 2 (linha 294).
-    ]]--
+
     }
   }
     
@@ -90,14 +84,50 @@ function love.load ()
     isAlive = false
   }
     
-foodEspecial = {
+
+     --[[trabalho 07
+            Array: foodEspecial
+            Escopo: foodEspecial é uma variável global
+            Tempo de vida: Sua duração é o tempo em que o programa é executado.
+            Alocação: É incrementado ao iniciar o programa.
+            Desalocação: Por completo quando o programa é encerrado.
+    
+            Esta variavel é responsavel por criar comidas especiais com cores diferentes a cada ciclo de score divisivel por 5.
+    ]]--    
+    
+    
+foodEspecial = {{
     pos = {
       x = nil,
       y = nil
     },
-    isAlive = false
-  }
+    isAlive = false,
+    color = { r = 123, g = 231 , b = 132 }         
     
+  },{
+    pos = {
+      x = nil,
+      y = nil
+    },
+    isAlive = false,
+    color = { r = 44, g = 99 , b = 21 }
+  },{
+    pos = {
+      x = nil,
+      y = nil
+    },
+    isAlive = false,
+    color = { r = 120, g = 91 , b = 12 }        
+  },{
+    pos = {
+      x = nil,
+      y = nil
+    },
+    isAlive = false,
+    color = { r = 123, g = 221 , b = 255 }    
+  }}
+  count = 4;
+  
 
 
   print("Criei Corpo do Player! : " .. tostring(player.body.size) .. "    x: " .. tostring(player.pos.current.x) .. "    y: " .. tostring(player.pos.current.y))
@@ -191,10 +221,10 @@ foodEspecial = {
   end 
 
 function respawnEspecialFood()
-    if(foodEspecial.isAlive == false)then
-         foodEspecial.pos.x = love.math.random(20, screenWidth - 30)
-         foodEspecial.pos.y = love.math.random(20, screenHeight - 30)
-         foodEspecial.isAlive = true
+    if(foodEspecial[count].isAlive == false)then
+         foodEspecial[count].pos.x = love.math.random(20, screenWidth - 30)
+         foodEspecial[count].pos.y = love.math.random(20, screenHeight - 30)
+         foodEspecial[count].isAlive = true
     end
   end
 
@@ -280,16 +310,17 @@ function respawnEspecialFood()
         love.audio.play( sound_eating )
         respawnPlayerFood()
       else
-        if(foodEspecial.isAlive and blockCollision(player,foodEspecial) == false or foodEspecial.isAlive==false )then
+        if(foodEspecial[count].isAlive and blockCollision(player,foodEspecial[count]) == false or foodEspecial[count].isAlive==false )then
             tail = table.remove(player.body.blocks,player.body.size)
             tail.pos.x = player.pos.previous.x
             tail.pos.y = player.pos.previous.y
         end 
       end
         
-    if(foodEspecial.isAlive == true)then
-        if (blockCollision(player,foodEspecial)) then
+    if(foodEspecial[count].isAlive == true)then
+        if (blockCollision(player,foodEspecial[count])) then
               --luck = 2
+            count = love.math.random(1, 4)
             luck = love.math.random(0, 2)
             if(luck == 1)then
                 tail = playerAddBlock(player.pos.previous.x , player.pos.previous.y)
@@ -302,6 +333,8 @@ function respawnEspecialFood()
                 love.audio.play( sound_gameover )
                 player.body.size = player.body.size-1;  
             end
+                
+                
           end
     end
 
@@ -314,7 +347,7 @@ function respawnEspecialFood()
        if(player.body.size % 5 ==0)then
             respawnEspecialFood()
         else
-           foodEspecial.isAlive = false
+           foodEspecial[count].isAlive = false
         end
 
     end
@@ -364,9 +397,9 @@ function respawnEspecialFood()
         love.graphics.rectangle( "fill", food.pos.x, food.pos.y, default_block_size, default_block_size )
       end   
         
-    if (foodEspecial.isAlive) then
-        love.graphics.setColor(255,0,0)
-        love.graphics.rectangle( "fill", foodEspecial.pos.x, foodEspecial.pos.y, default_block_size, default_block_size )
+    if (foodEspecial[count].isAlive) then
+        love.graphics.setColor(foodEspecial[count].color.r,foodEspecial[count].color.g,foodEspecial[count].color.b)
+        love.graphics.rectangle( "fill", foodEspecial[count].pos.x, foodEspecial[count].pos.y, default_block_size, default_block_size )
     end      
         
 

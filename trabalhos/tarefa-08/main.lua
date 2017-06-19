@@ -119,28 +119,26 @@ function newFoodEspecial (x,y,alive,r,g,b)
         end,
             
         co  = coroutine.create(function (dt)
-            while true do
-                 while true do
-                    for i=1, 10 do
-                      me.move(x+ 0, -player.body.speed*dt + y)
-                      dt = coroutine.yield()
-                    end
-                    for i=1, 10 do
-                      me.move( x + (player.body.speed*dt),  y+ 0)
-                      dt = coroutine.yield()
-                    end
-                    for i=1, 10 do
-                      me.move( -player.body.speed*dt + x, y+0)
-                      dt = coroutine.yield()
-                    end        
-                    for i=1, 10 do
-                      me.move(x+ 0, y + player.body.speed*dt)
-                      dt = coroutine.yield()
-                    end
-                    
-                    
-                  end     
-            end
+             while true do
+                for i=1, 10 do
+                  me.move(x+ 0, -player.body.speed*dt + y)
+                  dt = coroutine.yield()
+                end
+                for i=1, 10 do
+                  me.move( x + (player.body.speed*dt),  y+ 0)
+                  dt = coroutine.yield()
+                end
+                for i=1, 10 do
+                  me.move( -player.body.speed*dt + x, y+0)
+                  dt = coroutine.yield()
+                end        
+                for i=1, 10 do
+                  me.move(x+ 0, y + player.body.speed*dt)
+                  dt = coroutine.yield()
+                end
+
+
+              end     
         end)
             
     }
@@ -149,39 +147,7 @@ end
 
     
 foodEspecial = newFoodEspecial (0,0,false,0,0,0)
-f = false    
-    
---foodEspecial = {{
---    pos = {
---      x = nil,
---      y = nil
---    },
---    isAlive = false,
---    color = { r = 123, g = 231 , b = 132 }         
---    
---  },{
---    pos = {
---      x = nil,
---      y = nil
---    },
---    isAlive = false,
---    color = { r = 44, g = 99 , b = 21 }
---  },{
---    pos = {
---      x = nil,
---      y = nil
---    },
---    isAlive = false,
---    color = { r = 120, g = 91 , b = 12 }        
---  },{
---    pos = {
---      x = nil,
---      y = nil
---    },
---    isAlive = false,
---    color = { r = 123, g = 221 , b = 255 }    
---  }}
---  count = 4;
+
   
 
 

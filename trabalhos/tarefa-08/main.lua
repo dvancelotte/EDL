@@ -83,7 +83,7 @@ function love.load ()
     },
     isAlive = false
   }
-    
+--trabalho08
 function newFoodEspecial (x,y,alive,r,g,b)
     local me = {
         move = function ()
@@ -110,7 +110,9 @@ function newFoodEspecial (x,y,alive,r,g,b)
         setAlive = function(alive_)
                 alive = alive_
                 return alive
-        end,    
+        end,
+        
+       
             
     }
     return me

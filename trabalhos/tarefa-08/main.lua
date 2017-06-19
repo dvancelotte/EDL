@@ -83,10 +83,10 @@ function love.load ()
     },
     isAlive = false
   }
---trabalho08
+--trabalho08 
 function newFoodEspecial (x,y,alive,r,g,b)
     local me = {
-        move = function ()
+        create = function ()
             x = love.math.random(20, screenWidth - 30)
             y = love.math.random(20, screenHeight - 30)
             r = love.math.random(1, 255)
@@ -112,7 +112,36 @@ function newFoodEspecial (x,y,alive,r,g,b)
                 return alive
         end,
         
-       
+        move = function (dx,dy)
+             x = x + dx
+             y = y + dy
+             return x, y
+        end,
+            
+        co  = coroutine.create(function (dt)
+            while true do
+                 while true do
+                    for i=1, 10 do
+                      me.move(x+ 0, -player.body.speed*dt + y)
+                      dt = coroutine.yield()
+                    end
+                    for i=1, 10 do
+                      me.move( x + (player.body.speed*dt),  y+ 0)
+                      dt = coroutine.yield()
+                    end
+                    for i=1, 10 do
+                      me.move( -player.body.speed*dt + x, y+0)
+                      dt = coroutine.yield()
+                    end        
+                    for i=1, 10 do
+                      me.move(x+ 0, y + player.body.speed*dt)
+                      dt = coroutine.yield()
+                    end
+                    
+                    
+                  end     
+            end
+        end)
             
     }
     return me
@@ -302,6 +331,7 @@ function respawnEspecialFood()
       return true
     end
 
+    coroutine.resume(foodEspecial.co, dt)
     -- Acumulador do dt.
     accumulator.current = accumulator.current + dt
 
@@ -342,8 +372,10 @@ function respawnEspecialFood()
             tail.pos.y = player.pos.previous.y
         end 
       end
-        
+    
+    
     if(foodEspecial.getAlive() == true)then
+        
         if (blockCollision(player,foodEspecial.get())) then
             luck = love.math.random(0, 2)
             if(luck == 1)then
@@ -369,7 +401,7 @@ function respawnEspecialFood()
       -- Atualiza a pontuação.
       updatescore()
        if(player.body.size % 5 ==0 and foodEspecial.getAlive()==false)then
-            foodEspecial.move()
+            foodEspecial.create()
             foodEspecial.setAlive(true)
         elseif(player.body.size % 5 ~= 0) then           
             foodEspecial.setAlive(false)

@@ -85,7 +85,7 @@ function love.load ()
   }
 --trabalho08 
 function newFoodEspecial (x,y,alive,r,g,b)
-    local me = {
+    local me; me  = {
         create = function ()
             x = love.math.random(20, screenWidth - 30)
             y = love.math.random(20, screenHeight - 30)
@@ -297,7 +297,7 @@ function respawnEspecialFood()
       return true
     end
 
-    coroutine.resume(foodEspecial.co, dt)
+    
     -- Acumulador do dt.
     accumulator.current = accumulator.current + dt
 
@@ -341,7 +341,8 @@ function respawnEspecialFood()
     
     
     if(foodEspecial.getAlive() == true)then
-        
+      --trabalho 08
+        coroutine.resume(foodEspecial.co, dt)
         if (blockCollision(player,foodEspecial.get())) then
             luck = love.math.random(0, 2)
             if(luck == 1)then

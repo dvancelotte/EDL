@@ -78,6 +78,9 @@ function love.load ()
       size = 0,
       speed = 1400,
       gap = 1,
+      
+      -- trabalho-06 - blocks
+	    -- ARRAY
       blocks = {}
     }
   }
@@ -88,6 +91,9 @@ function love.load ()
       x = nil,
       y = nil
     },
+   -- trabalho-06 - isAlive
+	-- isAlive = false or isAlive = true
+	-- ENUMERAÇÃO
     isAlive = false
   }
 
@@ -100,7 +106,7 @@ function love.load ()
 
       new_block = playerAddBlock(initialPosX,player.pos.current.y)
 
-      --trabalho 06 união
+      
       table.insert(player.body.blocks, new_block)
     end
 
@@ -108,7 +114,9 @@ function love.load ()
     respawnPlayerFood()
 
     -- Inicializa o limitador de tickRate.
-    --trabalho 06 array
+  
+	-- trabalho-06 - accumulator
+	-- TUPLA
     accumulator= {0,0.1}
 
 --    accumulator = {

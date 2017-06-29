@@ -5,6 +5,12 @@ screenHeight = love.graphics.getHeight()
 -- Tamanho padrão dos Blocos.
 default_block_size = 20
 
+	-- Nome: default_block_size
+	-- Propriedade: endereço
+	-- Binding time: compilação
+	-- Explicação: Como default_block_size é uma variável global seu endereço é
+	--			   definido em tempo de compilação.
+
 -- Pontuação máxima.
 high_score = 0
 
@@ -37,11 +43,7 @@ function love.load ()
   -- Inicializa a Cor do Cenário
   love.graphics.setBackgroundColor(255,255,255)
     
-    -- Nome: 'love.graphics.setBackgroundColor'
-    -- Binding time: compilação
-    -- Propriedade: endereco
-    -- Explicação: O compilador terá que criar um endereço para incluir o valor na propriedade BackgroundColor. Por isso, seu binding time é por tempo de compilação
-
+   
   -- Inicializa a Cor das Linhas de Demarcação do Cenário.
   love.graphics.setColor(0,0, 0)
 
@@ -89,6 +91,7 @@ function love.load ()
     },
     isAlive = false
   }
+
 
   print("Criei Corpo do Player! : " .. tostring(player.body.size) .. "    x: " .. tostring(player.pos.current.x) .. "    y: " .. tostring(player.pos.current.y))
 

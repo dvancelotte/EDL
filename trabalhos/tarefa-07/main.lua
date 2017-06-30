@@ -89,8 +89,8 @@ function love.load ()
             Array: foodEspecial
             Escopo: foodEspecial é uma variável global
             Tempo de vida: Sua duração é o tempo em que o programa é executado.
-            Alocação: É incrementado ao iniciar o programa.
-            Desalocação: Por completo quando o programa é encerrado.
+            Alocação: É incrementado ao iniciar o programa e quando o jogado come uma comida especial no qual seu luck é 1
+            Desalocação: Por completo quando o programa é encerrado e quando o jogado come uma comida especial no qual seu luck é 2
     
             Esta variavel é responsavel por criar comidas especiais com cores diferentes a cada ciclo de score divisivel por 5.
     ]]--    
@@ -126,8 +126,10 @@ foodEspecial = {{
     isAlive = false,
     color = { r = 123, g = 221 , b = 255 }    
   }}
-  count = 4;
   
+  tot = 3
+  count = love.math.random(1,tot)
+ 
 
 
   print("Criei Corpo do Player! : " .. tostring(player.body.size) .. "    x: " .. tostring(player.pos.current.x) .. "    y: " .. tostring(player.pos.current.y))
@@ -208,6 +210,25 @@ foodEspecial = {{
     return new_block
 
   end
+
+  function newfoodAdd()
+
+    newfood= {pos = {
+              x = nil,
+              y = nil
+            },
+            isAlive = false,
+            color = { r = 123, g = 231 , b = 132 }         
+
+}
+    tot = tot+1
+    return newfood
+  end
+
+
+
+
+
 
   -- Atualiza a posição da Comida.
   function respawnPlayerFood()
@@ -320,14 +341,19 @@ function respawnEspecialFood()
     if(foodEspecial[count].isAlive == true)then
         if (blockCollision(player,foodEspecial[count])) then
               --luck = 2
-            count = love.math.random(1, 4)
+            count = love.math.random(1,tot)
             luck = love.math.random(0, 2)
             if(luck == 1)then
                 tail = playerAddBlock(player.pos.previous.x , player.pos.previous.y)
                 love.audio.play( sound_eating )
+                 nfood = newfoodAdd()
+                 --trabalho07 
+                 table.insert(foodEspecial,nfood)
             else
-                table.remove(player.body.blocks)
-                tail = table.remove(player.body.blocks)
+                --trabalho07
+                table.remove(foodEspecial,count)
+                tot = tot -1;
+                tail = table.remove(player.body.blocks,player.body.size)
                 tail.pos.x = player.pos.previous.x
                 tail.pos.y = player.pos.previous.y
                 love.audio.play( sound_gameover )
